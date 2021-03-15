@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
             // スワイプの長さを速度に変換する
             this.x_speed = x_swipeLength / 600.0f;
             this.y_speed = y_swipeLength / 600.0f;
+            this.x_speed *= -1;
+            this.y_speed *= -1;
         }
 
         //　オブジェクトの移動
