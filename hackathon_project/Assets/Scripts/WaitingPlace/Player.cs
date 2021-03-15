@@ -10,9 +10,12 @@ public class Player : MonoBehaviour
     float y_speed = 0;
     Vector2 startPos;
 
+    public AudioClip sound1;
+    AudioSource audioSource;
+
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -20,6 +23,7 @@ public class Player : MonoBehaviour
         //　メソッドの呼び出し
         //Move();// スマホ用
         MoveSwipe();// PC用
+
     }
 
     /*void Move() //スワイプで移動
@@ -69,5 +73,11 @@ public class Player : MonoBehaviour
 
         this.x_speed *= 0.99f;
         this.y_speed *= 0.99f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.tag == "tea"){
+            audioSource.PlayOneShot(sound1);
+        }
     }
 }
