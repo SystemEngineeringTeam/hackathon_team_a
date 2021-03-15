@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WaitingPlaceFromTitle : MonoBehaviour
+public class GoToGame1 : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,7 +14,7 @@ public class WaitingPlaceFromTitle : MonoBehaviour
     //ボタンを押した時の処理
     public void PushButton()
     {
-        SceneManager.LoadScene("Scenes/WaitingPlace");
+        SceneManager.LoadScene("Scenes/Game1");
     }
 
     // Update is called once per frame
