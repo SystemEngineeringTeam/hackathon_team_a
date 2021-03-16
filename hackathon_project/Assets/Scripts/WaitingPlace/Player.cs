@@ -22,12 +22,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         //　メソッドの呼び出し
-        //Move();// スマホ用
+        Move();// スマホ用
         MoveSwipe();// PC用
 
     }
 
-    /*void Move() //スワイプで移動
+    void Move() //スワイプで移動
     {   
         
         Vector2 direction = new Vector2(0, 0);
@@ -39,13 +39,49 @@ public class Player : MonoBehaviour
             float x = touch.deltaPosition.x;
             float y = touch.deltaPosition.y;
  
-            //　移動する向きを求める
-            direction = new Vector2(x, y).normalized;
+            if(x<=10.0f && x>=-10.0f)// 歩く
+            {
+                if(x>0.0f)
+                {
+                    x = 20.0f;
+                }else if(x<0.0f)
+                {
+                    x = -20.0f;
+                }
+            }else if (x>10.0f || X<-10.0f)// 走る
+            {
+                if(x>0.0f)
+                {
+                    x = 50.0f;
+                }else if(x<0.0f){
+                    x = -50.0f;
+                }
+            }
+
+            if(y<=10.0f && y>=-10.0f)// 歩く
+            {
+                if(y>0.0f)
+                {
+                    y = 20.0f;
+                }else if(y<0.0f)
+                {
+                    y = -20.0f;
+                }
+            }else if (y>10.0f || y<-10.0f)// 走る
+            {
+                if(y>0.0f)
+                {
+                    y = 50.0f;
+                }else if(y<0.0f){
+                    y = -50.0f;
+                }
+            }
+        
         }
  
         // 移動する向きとスピード
         GetComponent<Rigidbody2D>().velocity = direction * speed;
-    }*/
+    }
 
     void MoveSwipe()
     {   
