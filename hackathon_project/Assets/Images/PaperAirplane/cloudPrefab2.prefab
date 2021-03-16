@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6505005692116845324}
   - component: {fileID: 6505005692116845327}
   m_Layer: 0
-  m_Name: cloudPrefab1 1
+  m_Name: cloudPrefab2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000053644203, y: -0.000001192093}
-  m_Size: {x: 1.4079798, y: 0.59317976}
+  m_Offset: {x: -0.0041320035, y: -0.022174422}
+  m_Size: {x: 1.3749304, y: 0.52349627}
   m_Direction: 1
