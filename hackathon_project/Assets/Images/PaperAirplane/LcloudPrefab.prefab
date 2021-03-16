@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6541781573207801691}
   - component: {fileID: 8497859508094370016}
-  - component: {fileID: 5427584860671872294}
+  - component: {fileID: 8763717014892822622}
   m_Layer: 0
   m_Name: LcloudPrefab
   m_TagString: Untagged
@@ -82,8 +82,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &5427584860671872294
-EdgeCollider2D:
+--- !u!61 &8763717014892822622
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,18 +95,16 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.019848466, y: -0.006521404}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.43, y: 0.68}
+    newSize: {x: 1.43, y: 0.68}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2655411, y: 0.5156547}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.6648857, y: 0.22682615}
-  - {x: -0.4051097, y: 0.33478722}
-  - {x: 0.1427347, y: 0.32226813}
-  - {x: 0.35548887, y: 0.22879393}
-  - {x: 0.59438, y: 0.22126563}
-  - {x: 0.6608804, y: -0.0023977198}
-  - {x: 0.6558754, y: -0.19979228}
-  - {x: 0.5403031, y: -0.29048708}
-  - {x: 0.24508873, y: -0.25986195}
-  - {x: 0.106946014, y: -0.33116776}
-  - {x: -0.35215664, y: -0.32760754}
-  - {x: -0.6231051, y: -0.21660727}

@@ -22,7 +22,7 @@ public class RetryScript : MonoBehaviour
         player = GameObject.Find("紙ヒコーキ");
         Vector3 pos = player.transform.position;
         pos.x = 0;
-        pos.y = 2;
+        pos.y = 20;
         pos.z = 0;
         player.transform.position = pos;
         Script.flag = 0;
