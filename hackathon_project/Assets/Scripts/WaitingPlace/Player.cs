@@ -24,8 +24,7 @@ public class Player : MonoBehaviour
     {
         //　メソッドの呼び出し
         Move();// スマホ用
-        MoveSwipe();// PC用
-
+        //MoveSwipe();// PC用
     }
 
     void Move() //スワイプで移動
@@ -49,11 +48,11 @@ public class Player : MonoBehaviour
                     direction = touch.position - startPoint;
                     break;
             }
-        
+            GetComponent<Rigidbody2D>().velocity = (direction/100) * speed;
         }
  
         // 移動する向きとスピード
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
+        
     }
 
     void MoveSwipe()
