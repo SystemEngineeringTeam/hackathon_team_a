@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     float x_speed = 0;
     float y_speed = 0;
     Vector2 startPos;
+    Vector2 startPoint;
 
     public AudioClip sound1;
     AudioSource audioSource;
@@ -36,45 +37,17 @@ public class Player : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);// touch構造体の取得
             // スワイプの移動距離
-            float x = touch.deltaPosition.x;
-            float y = touch.deltaPosition.y;
  
-            if(x<=10.0f && x>=-10.0f)// 歩く
+            switch (touch.phase)
             {
-                if(x>0.0f)
-                {
-                    x = 20.0f;
-                }else if(x<0.0f)
-                {
-                    x = -20.0f;
-                }
-            }else if (x>10.0f || X<-10.0f)// 走る
-            {
-                if(x>0.0f)
-                {
-                    x = 50.0f;
-                }else if(x<0.0f){
-                    x = -50.0f;
-                }
-            }
+                
+                case TouchPhase.Began:
+                    startPoint = touch.position;
+                    break;
 
-            if(y<=10.0f && y>=-10.0f)// 歩く
-            {
-                if(y>0.0f)
-                {
-                    y = 20.0f;
-                }else if(y<0.0f)
-                {
-                    y = -20.0f;
-                }
-            }else if (y>10.0f || y<-10.0f)// 走る
-            {
-                if(y>0.0f)
-                {
-                    y = 50.0f;
-                }else if(y<0.0f){
-                    y = -50.0f;
-                }
+                case TouchPhase.Moved:
+                    direction = touch.position - startPoint;
+                    break;
             }
         
         }
