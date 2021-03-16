@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(kaiten == 0 && flag == 0){
-            this.rigidbody2d.velocity = new Vector3(0,-8f,0);
+            this.rigidbody2d.velocity = new Vector3(0,-7f,0);
         }else if(flag == 0){
             this.rigidbody2d.velocity = new Vector3(kaiten/15f,-3f,0);
         }
@@ -35,6 +35,18 @@ public class PlayerController : MonoBehaviour
             flag = 1;
             this.rigidbody2d.velocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
+        }
+    }
+    public void R_OnClick(){
+        if(kaiten < 70 && flag == 0){
+            kaiten += 25;
+            transform.Rotate(0,0,20);
+        }
+    }
+    public void L_OnClick(){
+        if(kaiten > -70 && flag == 0){
+            kaiten -= 25;
+            transform.Rotate(0,0,-20);
         }
     }
     void OnTriggerEnter2D(Collider2D other){
