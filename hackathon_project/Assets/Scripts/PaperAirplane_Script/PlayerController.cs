@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     int kaiten = 0;
     public int flag = 0;
     public GameObject _button;
+    float time = 0;
+    int LholdFlag = 0;
+    int RholdFlag = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,17 +40,61 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.identity;
             SceneManager.LoadScene("GameClear");
         }
-    }
-    public void R_OnClick(){
-        if(kaiten < 70 && flag == 0){
-            kaiten += 25;
-            transform.Rotate(0,0,20);
+        if(flag == 0 && LholdFlag != 0 && kaiten > -70){
+            time += Time.deltaTime;
+            if(time < 0.15 && LholdFlag == 1){
+                transform.Rotate(0,0,-20);
+                kaiten -= 25;
+                LholdFlag++;
+            }else if(time > 0.15 && time < 0.3 && LholdFlag == 2){
+                transform.Rotate(0,0,-20);
+                kaiten -= 25;
+                LholdFlag++;
+            }else if(time < 0.45 && time > 0.3 && LholdFlag == 3){
+                transform.Rotate(0,0,-20);
+                kaiten -= 25;
+                LholdFlag++;
+            }else if(time < 0.6 && time > 0.45 && LholdFlag == 4){
+                transform.Rotate(0,0,-20);
+                kaiten -= 25;
+                LholdFlag++;
+            }else if(time < 0.75 && time > 0.6 && LholdFlag == 5){
+                transform.Rotate(0,0,-20);
+                kaiten -= 25;
+                LholdFlag++;
+            }else if(time > 0.75 && LholdFlag == 6){
+                transform.Rotate(0,0,-20);
+                kaiten -= 25;
+                LholdFlag++;
+            }
         }
-    }
-    public void L_OnClick(){
-        if(kaiten > -70 && flag == 0){
-            kaiten -= 25;
-            transform.Rotate(0,0,-20);
+        if(flag == 0 && RholdFlag != 0 && kaiten < 70){
+            time += Time.deltaTime;
+            if(time < 0.15 && RholdFlag == 1){
+                transform.Rotate(0,0,20);
+                kaiten += 25;
+                RholdFlag++;
+            }else if(time > 0.15 && time < 0.3 && RholdFlag == 2){
+                transform.Rotate(0,0,20);
+                kaiten += 25;
+                RholdFlag++;
+            }else if(time > 0.3 && time < 0.45 && RholdFlag == 3){
+                transform.Rotate(0,0,20);
+                kaiten += 25;
+                RholdFlag++;
+            }else if(time > 0.45 && time < 0.6 && RholdFlag == 4){
+                transform.Rotate(0,0,20);
+                kaiten += 25;
+                RholdFlag++;
+            }else if(time > 0.6 && time < 0.75 && RholdFlag == 5){
+                transform.Rotate(0,0,20);
+                kaiten += 25;
+                RholdFlag++;
+            }else if(time > 0.75 && RholdFlag == 6){
+                transform.Rotate(0,0,20);
+                kaiten += 25;
+                RholdFlag++;
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other){
@@ -57,5 +104,20 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.identity;
         _button = GameObject.Find("Director");
         _button.GetComponent<ButtonController>().buttonactiv();
+    }
+
+    public void LHold(){
+        LholdFlag = 1;
+    }
+    public void RHold(){
+        RholdFlag = 1;
+    }
+    public void LHoldOut(){
+        LholdFlag = 0;
+        time = 0;
+    }
+    public void RHoldOut(){
+        RholdFlag = 0;
+        time = 0;
     }
 }
