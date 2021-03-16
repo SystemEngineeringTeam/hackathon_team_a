@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     float x_speed = 0;
     float y_speed = 0;
     Vector2 startPos;
+    Vector2 startPoint;
 
     public AudioClip sound1;
     AudioSource audioSource;
@@ -24,10 +25,9 @@ public class Player : MonoBehaviour
         //　メソッドの呼び出し
         //Move();// スマホ用
         MoveSwipe();// PC用
-
     }
 
-    /*void Move() //スワイプで移動
+    void Move() //スワイプで移動
     {   
         
         Vector2 direction = new Vector2(0, 0);
@@ -36,16 +36,24 @@ public class Player : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);// touch構造体の取得
             // スワイプの移動距離
-            float x = touch.deltaPosition.x;
-            float y = touch.deltaPosition.y;
  
-            //　移動する向きを求める
-            direction = new Vector2(x, y).normalized;
+            switch (touch.phase)
+            {
+                
+                case TouchPhase.Began:
+                    startPoint = touch.position;
+                    break;
+
+                case TouchPhase.Moved:
+                    direction = touch.position - startPoint;
+                    break;
+            }
+            GetComponent<Rigidbody2D>().velocity = (direction/100) * speed;
         }
  
         // 移動する向きとスピード
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
-    }*/
+        
+    }
 
     void MoveSwipe()
     {   
