@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         //　メソッドの呼び出し
-        Move();// スマホ用
-        //MoveSwipe();// PC用
+        //Move();// スマホ用
+        MoveSwipe();// PC用
     }
 
     void Move() //スワイプで移動
