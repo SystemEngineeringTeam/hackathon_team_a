@@ -6,6 +6,9 @@ TagManager:
   tags:
   - tea
   - cng
+  - block
+  - heart
+  - knife
   layers:
   - Default
   - TransparentFX
