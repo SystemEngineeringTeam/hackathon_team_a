@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
             flag = 1;
             this.rigidbody2d.velocity = Vector3.zero;
             transform.rotation = Quaternion.identity;
+            SceneManager.LoadScene("GameClear");
         }
     }
     public void R_OnClick(){
