@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 public class TimeCounter : MonoBehaviour
 {
-    float countTime = 0;
+    static float countTime = 0;
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("紙ヒコーキ");
+        countTime = 0;
     }
 
     // Update is called once per frame
@@ -19,5 +20,8 @@ public class TimeCounter : MonoBehaviour
             countTime += Time.deltaTime;
             GetComponent<Text>().text = countTime.ToString("F2");
         }
+    }
+    public static float Count(){
+        return countTime;
     }
 }
