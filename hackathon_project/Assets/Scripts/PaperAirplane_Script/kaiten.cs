@@ -11,7 +11,7 @@ public class kaiten : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Rotate(0,0,1);
     }
