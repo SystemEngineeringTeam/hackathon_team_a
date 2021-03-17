@@ -8,6 +8,8 @@ public class ScoreMng : MonoBehaviour
     public GameObject score_object = null;
     public int score = 0;
     public GameObject Heart;
+    public GameObject BlueHeart;
+    BlueHeart bscript;
     Heart script;
 
     void Start()

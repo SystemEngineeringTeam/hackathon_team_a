@@ -1766,6 +1766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heart: {fileID: 1261141404879416175, guid: 228a993a8b381f34db4cb4db40c20a44, type: 3}
+  blue_heart: {fileID: 6228301970310779675, guid: cdd857b9afb6bd74eaee55de4355bab5,
+    type: 3}
 --- !u!50 &878386724
 Rigidbody2D:
   serializedVersion: 4
@@ -3149,6 +3151,8 @@ MonoBehaviour:
   score_object: {fileID: 2035420358}
   score: 0
   Heart: {fileID: 1261141404879416175, guid: 228a993a8b381f34db4cb4db40c20a44, type: 3}
+  BlueHeart: {fileID: 6228301970310779675, guid: cdd857b9afb6bd74eaee55de4355bab5,
+    type: 3}
 --- !u!1001 &1273961735
 PrefabInstance:
   m_ObjectHideFlags: 0

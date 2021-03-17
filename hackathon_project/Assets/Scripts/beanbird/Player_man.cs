@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_man : MonoBehaviour
 {
@@ -73,8 +74,15 @@ public class Player_man : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         // ハートがプレイヤーに当たると消滅
         if(collision.tag == "heart"){
+            SceneManager.LoadScene("BirdBeanEnd");
             Destroy(gameObject);
         }
+    }
+
+    void OnBecameInvisible()// 画面外にいくと消滅
+    {
+        SceneManager.LoadScene("BirdBeanEnd");
+        Destroy(gameObject);
     }
 
 
