@@ -23,4 +23,10 @@ public class SnakeMove : MonoBehaviour
     public void OnRetry(){
         SceneManager.LoadScene("SnakeMenu");
     }
+    public void OnPlay(){
+        SceneManager.LoadScene("Game3");
+    }
+    public void OnInfo(){
+        SceneManager.LoadScene("SnakeInfo");
+    }
 }
