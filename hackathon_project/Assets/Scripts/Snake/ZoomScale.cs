@@ -15,7 +15,7 @@ public class ZoomScale : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(this.transform.localScale.x < 0.15){
             this.transform.localScale += new Vector3(Base,Base,0);
