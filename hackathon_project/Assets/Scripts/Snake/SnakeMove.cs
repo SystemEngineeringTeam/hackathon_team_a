@@ -29,4 +29,10 @@ public class SnakeMove : MonoBehaviour
     public void OnInfo(){
         SceneManager.LoadScene("SnakeInfo");
     }
+    public void OnInfoNext(){
+        SceneManager.LoadScene("SnakeInfo2");
+    }
+    public void OnInfoEnd(){
+        SceneManager.LoadScene("SnakeMenu");
+    }
 }
