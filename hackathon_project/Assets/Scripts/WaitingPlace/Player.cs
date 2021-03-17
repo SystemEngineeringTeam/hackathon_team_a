@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // audioSource = GetComponent<AudioSource>();
+    }
+    void Awake(){
         audioSource = GetComponent<AudioSource>();
     }
 
