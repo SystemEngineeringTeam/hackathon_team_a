@@ -27,21 +27,21 @@ public class Player_man : MonoBehaviour
         float horizontalKey = Input.GetAxis("Horizontal"); 
         float xSpeed = 0.0f;
 
-        if (horizontalKey > 0) 
+        if (horizontalKey > 0) // 右移動
         {
             transform.localScale = new Vector3(1, 1, 1);
             anim.SetBool("run", true);
             xSpeed = speed;
             rl = 0;
         }
-        else if (horizontalKey < 0) 
+        else if (horizontalKey < 0) // 左移動
         {
             transform.localScale = new Vector3(-1, 1, 1);
             anim.SetBool("run", true);
             xSpeed = -speed;
             rl = 1;
         }
-        else
+        else// 止まってる
         {
             anim.SetBool("run", false);
             xSpeed = 0.0f;
