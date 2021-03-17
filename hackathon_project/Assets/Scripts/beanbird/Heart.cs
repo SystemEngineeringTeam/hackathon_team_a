@@ -7,6 +7,7 @@ public class Heart : MonoBehaviour
 {
     GameObject ScoreMng;
     ScoreMng script;
+    public float hearttmp;
     void Start()
     {   
         ScoreMng = GameObject.Find("ScoreMng");
@@ -23,7 +24,8 @@ public class Heart : MonoBehaviour
         if(collision.tag == "block"){
             Destroy(gameObject);
         }else if(collision.tag == "knife"){
-            script.GetScore();
+            hearttmp = this.transform.position.y;
+            script.GetScore(hearttmp);// 得点
             Destroy(gameObject);
         }
     }

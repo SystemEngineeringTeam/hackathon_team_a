@@ -7,10 +7,12 @@ public class ScoreMng : MonoBehaviour
 {
     public GameObject score_object = null;
     public int score = 0;
+    public GameObject Heart;
+    Heart script;
 
     void Start()
     {
-        
+        script = Heart.GetComponent<Heart>();
     }
 
     void Update()
@@ -19,8 +21,15 @@ public class ScoreMng : MonoBehaviour
         score_text.text = "Score："+ score;
     }
 
-    public void GetScore(){
-        score += 50;
+    public void GetScore(float height){
+        
+        if(height < 0.0f){
+            score += 50;
+        }else
+        {
+            score += 150;
+        }
+        
     }
 }
 

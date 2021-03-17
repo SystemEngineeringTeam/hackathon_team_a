@@ -70,5 +70,12 @@ public class Player_man : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        // ハートがプレイヤーに当たると消滅
+        if(collision.tag == "heart"){
+            Destroy(gameObject);
+        }
+    }
+
 
 }
