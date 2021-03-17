@@ -9,6 +9,8 @@ public class HeartMng : MonoBehaviour
 
     float _timer = 0.0f;
     float _btimer = 10.0f;
+    float _totalTime = 0.0f;
+    int _cnt = 0;
     void Start()
     {
         
@@ -18,12 +20,18 @@ public class HeartMng : MonoBehaviour
     {
         _timer -= Time.deltaTime;// タイマーのカウントダウン
         _btimer -= Time.deltaTime;
-        if(_timer<0){ // _timerが０になったときheartを生成
+        _totalTime += Time.deltaTime;
+        if(_timer<0.0f){ // _timerが０になったときheartを生成
             Vector3 position = transform.position;
             position.x = Random.Range(-7, 7); // heartがランダムに生成される幅
 
             GameObject obj = Instantiate(heart, position, Quaternion.identity);// heartの生成
-            _timer += 1.0f;
+            _timer += 2.0f;
+            if(_cnt%7 == 0){
+                _timer -= 1.0f;
+            }
+            _timer -= _totalTime/100;
+            _cnt++;
         }
 
         if(_btimer<0){

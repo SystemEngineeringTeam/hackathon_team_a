@@ -8,8 +8,8 @@ public class Player_man : MonoBehaviour
     private Animator anim = null;
     private Rigidbody2D rb = null;
     private Rigidbody2D krb = null;
-    private float yvct = 10.0f;
-    private float xvct = 10.0f;
+    private float yvct = 15.0f;
+    private float xvct = 15.0f;
     private int rl = 0;// 右が０左が１   
 
     public float speed;
@@ -60,10 +60,10 @@ public class Player_man : MonoBehaviour
             {   
                 GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
                 krb = rknife.GetComponent<Rigidbody2D>();
-                xvct = 10.0f;
+                xvct = 15.0f;
             }else{// manが左を向いているとき
                 GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
-                xvct = -10.0f;
+                xvct = -15.0f;
                 krb = lknife.GetComponent<Rigidbody2D>();
             }
 
