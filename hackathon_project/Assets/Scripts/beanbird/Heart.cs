@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class Heart : MonoBehaviour
 {
+    GameObject ScoreMng;
+    ScoreMng script;
     void Start()
-    {
-        
+    {   
+        ScoreMng = GameObject.Find("ScoreMng");
+        script = ScoreMng.GetComponent<ScoreMng>();
     }
 
     void Update()
@@ -20,6 +23,7 @@ public class Heart : MonoBehaviour
         if(collision.tag == "block"){
             Destroy(gameObject);
         }else if(collision.tag == "knife"){
+            script.GetScore();
             Destroy(gameObject);
         }
     }
