@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Photon.Pun;
+using Photon.Realtime;
+
 public class Player : MonoBehaviour
 {
     // 移動スピード
@@ -90,6 +93,7 @@ public class Player : MonoBehaviour
         }
 
         if(collision.tag == "cng"){
+            PhotonNetwork.Disconnect();
             SceneManager.LoadScene("Menu");
         }
     }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Photon.Pun;
+using Photon.Realtime;
+
 public class GoToMenu : MonoBehaviour
 {
     // Start is called before the first frame update
