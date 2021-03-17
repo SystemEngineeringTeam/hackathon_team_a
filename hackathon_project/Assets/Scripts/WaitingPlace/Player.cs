@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-using Photon.Pun;
-using Photon.Realtime;
-
 public class Player : MonoBehaviour
 {
     // 移動スピード
@@ -96,8 +92,22 @@ public class Player : MonoBehaviour
         }
 
         if(collision.tag == "cng"){
-            PhotonNetwork.Disconnect();
-            SceneManager.LoadScene("Menu");
+            popUpMenu("popUpInWPlace",gameObject);
+            gameObject.GetComponent<Player>().enabled=false;
+            // SceneManager.LoadSceneAsync("popUpInWPlace", LoadSceneMode.Additive);
         }
+    }
+
+    public void popUpMenu(string sceneName,GameObject obj){
+        StartCoroutine(_popUpMenu(sceneName,()=>{
+            var menu = FindObjectOfType<PopupToMenu>() as PopupToMenu;
+            menu.player= obj;
+        }));
+    }
+
+    private IEnumerator _popUpMenu(string sceneName,System.Action onLoad) {
+        var asyncOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        yield return asyncOp;
+        onLoad.Invoke();
     }
 }
