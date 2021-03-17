@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonController : MonoBehaviour
+public class SnakeMove : MonoBehaviour
 {
-    [SerializeField] GameObject text;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -17,13 +16,11 @@ public class ButtonController : MonoBehaviour
     {
         
     }
-    public void buttonactiv(){
-        text.SetActive(true);
+
+    public void OnHome(){
+        SceneManager.LoadScene("WaitingPlace");
     }
-    public void buttonfalse(){
-        text.SetActive(false);
-    }
-    public void goHome(){
-        SceneManager.LoadScene("Menu");
+    public void OnRetry(){
+        SceneManager.LoadScene("SnakeMenu");
     }
 }
