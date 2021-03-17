@@ -6,8 +6,14 @@ public class Player_man : MonoBehaviour
 {
     private Animator anim = null;
     private Rigidbody2D rb = null;
+    private Rigidbody2D krb = null;
+    private float yvct = 10.0f;
+    private float xvct = 10.0f;
+    private int rl = 0;// 右が０左が１   
 
     public float speed;
+    public GameObject l_knife;
+    public GameObject r_knife;
 
     void Start()
     {
@@ -26,12 +32,14 @@ public class Player_man : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             anim.SetBool("run", true);
             xSpeed = speed;
+            rl = 0;
         }
         else if (horizontalKey < 0) 
         {
             transform.localScale = new Vector3(-1, 1, 1);
             anim.SetBool("run", true);
             xSpeed = -speed;
+            rl = 1;
         }
         else
         {
@@ -39,5 +47,27 @@ public class Player_man : MonoBehaviour
             xSpeed = 0.0f;
         }
         rb.velocity = new Vector2(xSpeed, rb.velocity.y);
+        throwknife();
     }
+
+    public void throwknife(){
+        Vector3 tmp = GameObject.Find("man").transform.position;
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if(rl == 0)//manが右を向いているとき
+            {   
+                GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
+                krb = rknife.GetComponent<Rigidbody2D>();
+            }else{// manが左を向いているとき
+                GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
+                xvct *= -1;
+                krb = lknife.GetComponent<Rigidbody2D>();
+            }
+
+            krb.velocity = new Vector2(xvct, yvct);
+        }
+    }
+
+
 }
