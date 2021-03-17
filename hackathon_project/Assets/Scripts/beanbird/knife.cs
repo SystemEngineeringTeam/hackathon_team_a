@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Heart : MonoBehaviour
+public class knife : MonoBehaviour
 {
     void Start()
     {
@@ -16,18 +15,13 @@ public class Heart : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        // ハートがブロックに当たると消滅
-        if(collision.tag == "block"){
-            Destroy(gameObject);
-        }else if(collision.tag == "knife"){
+        // knifeがheartに当たると消滅
+        if(collision.tag == "heart"){
             Destroy(gameObject);
         }
     }
-
     void OnBecameInvisible()// 画面外にいくと消滅
     {
         Destroy(gameObject);    
     }
-
-
 }

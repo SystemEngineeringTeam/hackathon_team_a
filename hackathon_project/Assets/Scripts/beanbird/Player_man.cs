@@ -59,9 +59,10 @@ public class Player_man : MonoBehaviour
             {   
                 GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
                 krb = rknife.GetComponent<Rigidbody2D>();
+                xvct = 10.0f;
             }else{// manが左を向いているとき
                 GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
-                xvct *= -1;
+                xvct = -10.0f;
                 krb = lknife.GetComponent<Rigidbody2D>();
             }
 
