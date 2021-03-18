@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 using Photon.Pun;
 using Photon.Chat;
-using Photon.Realtime;
+// using Photon.Realtime;
 public class chat : MonoBehaviour, IChatClientListener
 {
 	public ChatClient chatClient;
@@ -16,23 +16,34 @@ public class chat : MonoBehaviour, IChatClientListener
     public bool isSend2User;
     public InputField inputField;
 
-    public GameObject Content;
+    public ScrollRect ScrollView;
     public GameObject textPrefab;
 
     public string user;
 
     private GameObject chatObject;
+    private Transform Content;
+    private Scrollbar Scrollbar;
     public GameObject hideShowButton;
+    public FontSizer fontSizer;
+    
 
     // Start is called before the first frame update
     void Start(){
         chatObject = transform.Find("Chat").gameObject;
+        Content = ScrollView.content;
+        Scrollbar=ScrollView.verticalScrollbar;
     }
 
     void Awake()
     {
         chatClient = new ChatClient( this );
         this.chatClient.ConnectUsingSettings(PhotonNetwork.PhotonServerSettings.AppSettings.GetChatSettings());
+        user = PhotonNetwork.NickName;
+        if( user.CompareTo("")==0){
+            user="noName"+System.Environment.TickCount%1000;
+        }
+        this.chatClient.AuthValues = new AuthenticationValues(this.user);
 
     }
 
@@ -63,13 +74,21 @@ public class chat : MonoBehaviour, IChatClientListener
     
     // メッセージを送信する
     public void SendChat(){
-        if(isSend2User){
-            SendChatMessageUser();
-        }else{
-            SendChatMessageChannel();
+        if(!inputField.text.Equals("")){
+            if(isSend2User){
+                SendChatMessageUser();
+            }else{
+                SendChatMessageChannel();
+            }
+            inputField.text="";
         }
-        inputField.text="";
     }
+    public void SendChatInReturn(){
+        if(Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)){
+            SendChat();
+        }
+    }
+
     void SendChatMessageChannel(){
         chatClient.PublishMessage( activeChannel, inputField.text );
     }
@@ -84,7 +103,7 @@ public class chat : MonoBehaviour, IChatClientListener
     //チャット接続時
     public void OnConnected()
 	{
-        Debug.Log("connected");
+        // Debug.Log("connected");
         chatClient.Subscribe( new string[] { "hoge", "channelB" } );
         user=PhotonNetwork.NickName;
     }
@@ -98,9 +117,12 @@ public class chat : MonoBehaviour, IChatClientListener
         for(int i=0;i<messages.Length;i++)
         {
             GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
-            obj.GetComponent<Text>().text=senders[i]+" : "+messages[i];
-            obj.transform.parent=Content.transform;
+            obj.GetComponent<Text>().text=senders[i]+": "+messages[i];
+            obj.GetComponent<Text>().fontSize=(int)fontSizer.fontSize;
+            obj.transform.SetParent(Content);
+            Scrollbar.value=0;
         }
+
 		// if (channelName.Equals(this.selectedChannelName))
 		// {
 		// 	// update text
@@ -110,7 +132,7 @@ public class chat : MonoBehaviour, IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
 	{
-
+        
     }
 
 
@@ -119,7 +141,7 @@ public class chat : MonoBehaviour, IChatClientListener
     
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
-        Debug.Log("channels:"+channels[0]+"\nresults:"+results[0]);
+        // Debug.Log("channels:"+channels[0]+"\nresults:"+results[0]);
     }
     public void OnUnsubscribed(string[] channels)
 	{
