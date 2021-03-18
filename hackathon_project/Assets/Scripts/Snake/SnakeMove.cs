@@ -21,6 +21,7 @@ public class SnakeMove : MonoBehaviour
     public void OnHome(){
         SceneManager.LoadScene("WaitingPlace");
         gameObject.SetActive(false);
+        sound.SetActive(false);
     }
     public void OnRetry(){
         SceneManager.LoadScene("SnakeMenu");

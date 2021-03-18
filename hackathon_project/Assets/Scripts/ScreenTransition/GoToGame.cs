@@ -20,7 +20,7 @@ public class GoToGame : MonoBehaviour
     public void PushTakeru()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene("Scenes/Snake/Game3");
+        SceneManager.LoadScene("Scenes/Snake/SnakeMenu");
     }
 
     // Update is called once per frame

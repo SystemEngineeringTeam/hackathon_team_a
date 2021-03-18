@@ -15,7 +15,7 @@ public class GoToWaitingPlace : MonoBehaviour
     //ボタンを押した時の処理
     public void PushButton()
     {
-        gameObject.SetActive(false);
+        sound.SetActive(false);
         SceneManager.LoadScene("Scenes/WaitingPlace");
     }
 
