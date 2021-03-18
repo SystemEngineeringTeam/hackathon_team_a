@@ -8,6 +8,7 @@ public class BlueHeart : MonoBehaviour
     ScoreMng script;
     RegeneMng rgnscript;
     public float hearttmp;
+    int flag = 0;
     
     void Start()
     {
@@ -25,8 +26,13 @@ public class BlueHeart : MonoBehaviour
         // ハートがブロックに当たると消滅
         if(collision.tag == "block"){
             Destroy(gameObject);
+            flag++;
         }else if(collision.tag == "knife"){
+            if(flag!=0)
+            {
             rgnscript.Regene();
+            flag--;
+            }
             hearttmp = this.transform.position.y;
             script.GetScore(hearttmp);// 得点
             Destroy(gameObject);
