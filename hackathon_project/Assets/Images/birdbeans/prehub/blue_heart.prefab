@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8340557490271668661}
   - component: {fileID: 5216075350642139001}
   - component: {fileID: 3703117142116170451}
-  - component: {fileID: 7533353435533302454}
   - component: {fileID: 6301266047249991882}
+  - component: {fileID: -813922835916687086}
   m_Layer: 0
   m_Name: blue_heart
   m_TagString: heart
@@ -97,22 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hearttmp: 0
---- !u!58 &7533353435533302454
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6228301970310779675}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.8
 --- !u!50 &6301266047249991882
 Rigidbody2D:
   serializedVersion: 4
@@ -134,3 +118,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &-813922835916687086
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228301970310779675}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9, y: 9}
+    newSize: {x: 0.09, y: 0.09}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -4.5, y: 4.5}
+      - {x: -4.499807, y: -0.49810034}
+      - {x: -0.5056268, y: -4.500195}
+      - {x: 0.4947642, y: -4.497794}
+      - {x: 0.48897466, y: -4.5095444}
+      - {x: 4.5, y: -0.49970508}
+      - {x: 4.5, y: 4.5}
