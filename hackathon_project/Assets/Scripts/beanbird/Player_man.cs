@@ -31,7 +31,7 @@ public class Player_man : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         soundscript = Sound.GetComponent<SoundMng>();
         var renderer = GetComponent<SpriteRenderer>();
-        center_x = Screen.width/2;
+        center_x = Screen.height/2;
     }
 
 
