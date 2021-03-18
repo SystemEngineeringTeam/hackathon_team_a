@@ -24,16 +24,23 @@ public class SettingName : MonoBehaviour
     }
 
     public void ChangeNickName(){
-        string nickName = NameInput.transform.Find("InputField").GetComponent<InputField>().text;
+        InputField input =NameInput.transform.Find("InputField").GetComponent<InputField>();
+        string nickName = input.text;
         if (!nickName.Equals("")){
                 PhotonNetwork.LocalPlayer.NickName = nickName;
                 PhotonNetwork.Disconnect();
                 PhotonNetwork.ConnectUsingSettings();
+                input.text="";
         }
         else{
-                Debug.LogError("Player Name is invalid.");
+                // Debug.LogError("Player Name is invalid.");
         }
         NameInput.SetActive(false);
+    }
+    public void ChangeNickNameInReturn(){
+        if(Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)){
+            ChangeNickName();
+        }
     }
 
     public void showHideInput(){
