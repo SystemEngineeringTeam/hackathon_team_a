@@ -11,7 +11,7 @@ public class Player_man : MonoBehaviour
     private float yvct = 15.0f;
     private float xvct = 15.0f;
     private int rl = 0;// 右が０左が１   
-    private float duration = 0;
+    private int judge = 0;
 
     public float speed;
     public GameObject l_knife;
@@ -34,7 +34,6 @@ public class Player_man : MonoBehaviour
 
     void Update()
     {   
-        duration += Time.deltaTime; 
         pcmove();
         phonemove();
     }
@@ -82,12 +81,12 @@ public class Player_man : MonoBehaviour
                 
                 case TouchPhase.Began:
                     startPoint = touch.position;
-                    duration = 0;
+                    Debug.Log(startPoint);
                     break;
 
                 case TouchPhase.Moved:
                     direction = touch.position - startPoint;
-                    if(duration>=1.0f);{
+                    if(startPoint.x>0){
                         if (direction.x > 0) // 右移動
                         {
                             transform.localScale = new Vector3(1, 1, 1);
@@ -107,12 +106,16 @@ public class Player_man : MonoBehaviour
                             xspeed = 0.0f;
                         }
                         rb.velocity = new Vector2(xspeed, rb.velocity.y);
+                    }else{
+                        throwknife();
+                        judge = 1;
                     }
                     break;
 
                 case TouchPhase.Ended:
                     anim.SetBool("run", false);
                     rb.velocity = new Vector2(0, 0);
+                    judge = 0;
                     break;
             }
 
@@ -122,18 +125,20 @@ public class Player_man : MonoBehaviour
 
     public void throwknife(){
         Vector3 tmp = GameObject.Find("man").transform.position;
-        if(rl == 0)//manが右を向いているとき
-        {   
-            GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
-            krb = rknife.GetComponent<Rigidbody2D>();
-            xvct = 15.0f;
-        }else{// manが左を向いているとき
-            GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
-            xvct = -15.0f;
-            krb = lknife.GetComponent<Rigidbody2D>();
-        }
+        if(judge == 0){
+            if(rl == 0)//manが右を向いているとき
+            {   
+                GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
+                krb = rknife.GetComponent<Rigidbody2D>();
+                xvct = 15.0f;
+            }else{// manが左を向いているとき
+                GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
+                xvct = -15.0f;
+                krb = lknife.GetComponent<Rigidbody2D>();
+            }
 
-        krb.velocity = new Vector2(xvct, yvct);
+            krb.velocity = new Vector2(xvct, yvct);
+        }
         
     }
 
