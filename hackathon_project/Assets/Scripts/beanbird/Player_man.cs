@@ -11,12 +11,16 @@ public class Player_man : MonoBehaviour
     private float yvct = 15.0f;
     private float xvct = 15.0f;
     private int rl = 0;// 右が０左が１   
+    private float duration = 0;
 
     public float speed;
     public GameObject l_knife;
     public GameObject r_knife;
     public GameObject Sound;
     SoundMng soundscript;
+
+    Vector2 startPos;
+    Vector2 startPoint;
 
     void Start()
     {
@@ -28,7 +32,13 @@ public class Player_man : MonoBehaviour
 
 
     void Update()
-    {
+    {   
+        duration += Time.deltaTime; 
+        pcmove();
+        //phonemove();
+    }
+
+    public void pcmove(){
         float horizontalKey = Input.GetAxis("Horizontal"); 
         float xSpeed = 0.0f;
 
@@ -52,27 +62,78 @@ public class Player_man : MonoBehaviour
             xSpeed = 0.0f;
         }
         rb.velocity = new Vector2(xSpeed, rb.velocity.y);
-        throwknife();
+        if (Input.GetKeyDown(KeyCode.X)){
+            throwknife();
+        }
+    }
+
+    public void phonemove(){
+        Vector2 direction = new Vector2(0, 0);
+        
+        if (Input.touchCount > 0)// タッチ数
+        {
+            Touch touch = Input.GetTouch(0);// touch構造体の取得
+            float xspeed = 0;
+            // スワイプの移動距離
+ 
+            switch (touch.phase)
+            {
+                
+                case TouchPhase.Began:
+                    startPoint = touch.position;
+                    duration = 0;
+                    break;
+
+                case TouchPhase.Moved:
+                    direction = touch.position - startPoint;
+                    if(duration>=1.0f);{
+                        if (direction.x > 0) // 右移動
+                        {
+                            transform.localScale = new Vector3(1, 1, 1);
+                            anim.SetBool("run", true);
+                            xspeed = speed;
+                            rl = 0;
+                        }
+                        else if (direction.x < 0) // 左移動
+                        {
+                            transform.localScale = new Vector3(-1, 1, 1);
+                            anim.SetBool("run", true);
+                            xspeed = -speed;
+                            rl = 1;
+                        }
+                        else// 止まってる
+                        {
+                            xspeed = 0.0f;
+                        }
+                        rb.velocity = new Vector2(xspeed, rb.velocity.y);
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                    anim.SetBool("run", false);
+                    rb.velocity = new Vector2(0, 0);
+                    break;
+            }
+
+        }
+
     }
 
     public void throwknife(){
         Vector3 tmp = GameObject.Find("man").transform.position;
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if(rl == 0)//manが右を向いているとき
-            {   
-                GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
-                krb = rknife.GetComponent<Rigidbody2D>();
-                xvct = 15.0f;
-            }else{// manが左を向いているとき
-                GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
-                xvct = -15.0f;
-                krb = lknife.GetComponent<Rigidbody2D>();
-            }
-
-            krb.velocity = new Vector2(xvct, yvct);
+        if(rl == 0)//manが右を向いているとき
+        {   
+            GameObject rknife = Instantiate(r_knife, tmp, Quaternion.identity);
+            krb = rknife.GetComponent<Rigidbody2D>();
+            xvct = 15.0f;
+        }else{// manが左を向いているとき
+            GameObject lknife = Instantiate(l_knife, tmp, Quaternion.identity);
+            xvct = -15.0f;
+            krb = lknife.GetComponent<Rigidbody2D>();
         }
+
+        krb.velocity = new Vector2(xvct, yvct);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
