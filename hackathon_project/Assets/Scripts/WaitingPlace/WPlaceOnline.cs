@@ -34,6 +34,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom(){
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrehub.name, new Vector3(0f,0f,0f), Quaternion.identity, 0);
         Player.GetComponent<Player>().enabled=true;
+        Player.GetComponent<Player>().isMine=true;
         if(PhotonNetwork.LocalPlayer.NickName.CompareTo("")==0){
             Player.transform.GetChild(0).GetComponent<TextMesh>().text = "noName";
         }else{
