@@ -14,7 +14,7 @@ public class GoToInfo : MonoBehaviour
     //ボタンを押した時の処理
     public void PushButton()
     {
-        SceneManager.LoadScene("Scenes/Info");
+        SceneManager.LoadScene("Scenes/PaperAir/Info");
     }
 
     // Update is called once per frame
