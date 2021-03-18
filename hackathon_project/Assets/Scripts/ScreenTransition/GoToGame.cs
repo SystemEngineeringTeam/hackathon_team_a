@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GoToWaitingPlace : MonoBehaviour
+public class GoToGame : MonoBehaviour
 {
-    GameObject sound;
     // Start is called before the first frame update
     void Start()
     {
-        sound = GameObject.Find("EventSystem");
+        
     }
 
     //ボタンを押した時の処理
-    public void PushButton()
+    public void PushNaruse()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene("Scenes/WaitingPlace");
+        SceneManager.LoadScene("Scenes/Game2");
+    }
+    public void PushTakeru()
+    {
+        gameObject.SetActive(false);
+        SceneManager.LoadScene("Scenes/Snake/Game3");
     }
 
     // Update is called once per frame
