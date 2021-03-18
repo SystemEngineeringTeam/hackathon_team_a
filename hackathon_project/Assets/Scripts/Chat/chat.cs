@@ -25,6 +25,7 @@ public class chat : MonoBehaviour, IChatClientListener
     private Transform Content;
     private Scrollbar Scrollbar;
     public GameObject hideShowButton;
+    public FontSizer fontSizer;
     
 
     // Start is called before the first frame update
@@ -116,7 +117,8 @@ public class chat : MonoBehaviour, IChatClientListener
         for(int i=0;i<messages.Length;i++)
         {
             GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
-            obj.GetComponent<Text>().text=senders[i]+" :"+messages[i];
+            obj.GetComponent<Text>().text=senders[i]+": "+messages[i];
+            obj.GetComponent<Text>().fontSize=(int)fontSizer.fontSize;
             obj.transform.SetParent(Content);
             Scrollbar.value=0;
         }
