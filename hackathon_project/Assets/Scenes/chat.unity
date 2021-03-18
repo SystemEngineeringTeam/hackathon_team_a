@@ -369,7 +369,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2146274718}
   m_HandleRect: {fileID: 2146274717}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -919,7 +919,7 @@ MonoBehaviour:
   sendUser: 
   isSend2User: 0
   inputField: {fileID: 1767182211}
-  Content: {fileID: 1245986946}
+  ScrollView: {fileID: 1219899487}
   textPrefab: {fileID: 3926775603526752948, guid: b05a947ec0538be43b93dfcf5f355f42,
     type: 3}
   user: 
@@ -1246,11 +1246,11 @@ RectTransform:
   m_Father: {fileID: 375989465}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000038146973}
-  m_SizeDelta: {x: -11.118835, y: 0}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: 1, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1245986948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 1
+  m_ChildScaleHeight: 0
 --- !u!114 &1245986949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,7 +1654,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 749840556}
-        m_MethodName: SendChat
+        m_MethodName: SendChatInReturn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

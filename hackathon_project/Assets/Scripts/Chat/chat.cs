@@ -16,17 +16,22 @@ public class chat : MonoBehaviour, IChatClientListener
     public bool isSend2User;
     public InputField inputField;
 
-    public GameObject Content;
+    public ScrollRect ScrollView;
     public GameObject textPrefab;
 
     public string user;
 
     private GameObject chatObject;
+    private Transform Content;
+    private Scrollbar Scrollbar;
     public GameObject hideShowButton;
+    
 
     // Start is called before the first frame update
     void Start(){
         chatObject = transform.Find("Chat").gameObject;
+        Content = ScrollView.content;
+        Scrollbar=ScrollView.verticalScrollbar;
     }
 
     void Awake()
@@ -68,13 +73,21 @@ public class chat : MonoBehaviour, IChatClientListener
     
     // メッセージを送信する
     public void SendChat(){
-        if(isSend2User){
-            SendChatMessageUser();
-        }else{
-            SendChatMessageChannel();
+        if(!inputField.text.Equals("")){
+            if(isSend2User){
+                SendChatMessageUser();
+            }else{
+                SendChatMessageChannel();
+            }
+            inputField.text="";
         }
-        inputField.text="";
     }
+    public void SendChatInReturn(){
+        if(Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)){
+            SendChat();
+        }
+    }
+
     void SendChatMessageChannel(){
         chatClient.PublishMessage( activeChannel, inputField.text );
     }
@@ -89,7 +102,7 @@ public class chat : MonoBehaviour, IChatClientListener
     //チャット接続時
     public void OnConnected()
 	{
-        Debug.Log("connected");
+        // Debug.Log("connected");
         chatClient.Subscribe( new string[] { "hoge", "channelB" } );
         user=PhotonNetwork.NickName;
     }
@@ -103,9 +116,11 @@ public class chat : MonoBehaviour, IChatClientListener
         for(int i=0;i<messages.Length;i++)
         {
             GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
-            obj.GetComponent<Text>().text=senders[i]+" : "+messages[i];
-            obj.transform.parent=Content.transform;
+            obj.GetComponent<Text>().text=senders[i]+" :"+messages[i];
+            obj.transform.SetParent(Content);
+            Scrollbar.value=0;
         }
+
 		// if (channelName.Equals(this.selectedChannelName))
 		// {
 		// 	// update text
@@ -115,7 +130,7 @@ public class chat : MonoBehaviour, IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
 	{
-
+        
     }
 
 
@@ -124,7 +139,7 @@ public class chat : MonoBehaviour, IChatClientListener
     
 	public void OnSubscribed(string[] channels, bool[] results)
 	{
-        Debug.Log("channels:"+channels[0]+"\nresults:"+results[0]);
+        // Debug.Log("channels:"+channels[0]+"\nresults:"+results[0]);
     }
     public void OnUnsubscribed(string[] channels)
 	{
