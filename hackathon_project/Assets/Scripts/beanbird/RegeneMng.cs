@@ -28,15 +28,27 @@ public class RegeneMng : MonoBehaviour
         flag--;
     }
 
+    public void ResetFlag(){
+        flag = 0;
+    }
+
     public void Keeptmp(Vector3 blocktmp){
         tmp[i] = blocktmp;
-        Debug.Log(tmp[i]);
         i++;
     }
+
     public void Regene(){
         Vector3 blockpos = transform.position;
         blockpos = tmp[i-1];
         GameObject block = Instantiate(Block, blockpos, Quaternion.identity);
         i--;
+    }
+
+    public void AllRegene(){
+        for(; i!=0; i--){
+            Vector3 blockposition = transform.position;
+            blockposition = tmp[i-1];
+            GameObject block = Instantiate(Block, blockposition, Quaternion.identity);
+        }
     }
 }
