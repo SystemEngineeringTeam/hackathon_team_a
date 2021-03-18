@@ -12,6 +12,7 @@ public class Player_man : MonoBehaviour
     private float xvct = 15.0f;
     private int rl = 0;// 右が０左が１   
     private int judge = 0;
+    private float center_x;
 
     public float speed;
     public GameObject l_knife;
@@ -21,6 +22,7 @@ public class Player_man : MonoBehaviour
 
     Vector2 startPos;
     Vector2 startPoint;
+    
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class Player_man : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         soundscript = Sound.GetComponent<SoundMng>();
         var renderer = GetComponent<SpriteRenderer>();
+        center_x = Screen.width/2;
     }
 
 
@@ -86,7 +89,7 @@ public class Player_man : MonoBehaviour
 
                 case TouchPhase.Moved:
                     direction = touch.position - startPoint;
-                    if(startPoint.x>0){
+                    if(startPoint.x>center_x){
                         if (direction.x > 0) // 右移動
                         {
                             transform.localScale = new Vector3(1, 1, 1);
