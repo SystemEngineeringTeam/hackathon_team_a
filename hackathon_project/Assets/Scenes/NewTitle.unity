@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 1859242268}
   - component: {fileID: 1859242267}
   m_Layer: 0
-  m_Name: 134747124054213113689_BG10a_80
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
