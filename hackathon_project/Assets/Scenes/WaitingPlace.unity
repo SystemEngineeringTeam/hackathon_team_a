@@ -36045,7 +36045,7 @@ GameObject:
   - component: {fileID: 745525733}
   - component: {fileID: 745525732}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: OnlineSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

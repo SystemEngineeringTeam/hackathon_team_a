@@ -42,6 +42,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
         }
         MainCam.GetComponent<FollowCamera>().playerObj =Player;
 
-            SceneManager.LoadScene("SettingName",LoadSceneMode.Additive);
+        SceneManager.LoadScene("SettingName",LoadSceneMode.Additive);
+        SceneManager.LoadScene("Chat",LoadSceneMode.Additive);
     }
 }
