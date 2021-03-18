@@ -9,8 +9,11 @@ public class ScoreMng : MonoBehaviour
     public int score = 0;
     public GameObject Heart;
     public GameObject BlueHeart;
+    public GameObject YellowHeart;
     BlueHeart bscript;
     Heart script;
+    YellowHeart yscript;
+
 
     void Start()
     {

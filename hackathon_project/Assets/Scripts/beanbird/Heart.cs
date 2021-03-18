@@ -8,10 +8,13 @@ public class Heart : MonoBehaviour
     GameObject ScoreMng;
     ScoreMng script;
     public float hearttmp;
+    RegeneMng rgnscript;
+
     void Start()
     {   
         ScoreMng = GameObject.Find("ScoreMng");
         script = ScoreMng.GetComponent<ScoreMng>();
+        rgnscript = GameObject.Find("RegenerateMng").GetComponent<RegeneMng>();
     }
 
     void Update()
@@ -23,6 +26,7 @@ public class Heart : MonoBehaviour
         // ハートがブロックに当たると消滅
         if(collision.tag == "block"){
             Destroy(gameObject);
+            rgnscript.AddFlag();
         }else if(collision.tag == "knife"){
             hearttmp = this.transform.position.y;
             script.GetScore(hearttmp);// 得点

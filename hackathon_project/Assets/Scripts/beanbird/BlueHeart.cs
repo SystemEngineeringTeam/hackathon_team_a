@@ -25,8 +25,14 @@ public class BlueHeart : MonoBehaviour
         // ハートがブロックに当たると消滅
         if(collision.tag == "block"){
             Destroy(gameObject);
+            rgnscript.AddFlag();
         }else if(collision.tag == "knife"){
+            int _flag = rgnscript.flag;
+            if(_flag!=0)
+            {
             rgnscript.Regene();
+            rgnscript.DecFlag();
+            }
             hearttmp = this.transform.position.y;
             script.GetScore(hearttmp);// 得点
             Destroy(gameObject);

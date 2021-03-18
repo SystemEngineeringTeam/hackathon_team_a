@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class knife : MonoBehaviour
 {
+    public AudioClip sound1;
+    AudioSource audiosource;
     void Start()
     {
-        
+        audiosource = GetComponent<AudioSource>();
+        audiosource.PlayOneShot(sound1);
     }
 
     void Update()
