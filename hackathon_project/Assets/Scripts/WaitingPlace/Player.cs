@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public AudioClip sound1;
     AudioSource audioSource;
 
+    public bool isMine=false;
+
     void Start()
     {
         // audioSource = GetComponent<AudioSource>();
@@ -86,19 +88,21 @@ public class Player : MonoBehaviour
         this.y_speed *= 0.99f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.tag == "tea"){
-            audioSource.PlayOneShot(sound1);
-        }
+    void OnTriggerEnter2D(Collider2D collision) {
+        if(isMine){
+            if(collision.tag == "tea"){
+                audioSource.PlayOneShot(sound1);
+            }
 
-        if(collision.tag == "cng"){
-            popUpMenu("popUpInWPlace",gameObject);
-            gameObject.GetComponent<Player>().enabled=false;
-            // SceneManager.LoadSceneAsync("popUpInWPlace", LoadSceneMode.Additive);
+            if(collision.tag == "cng"){
+                popUpMenu("popUpInWPlace",gameObject);
+                gameObject.GetComponent<Player>().enabled=false;
+                // SceneManager.LoadSceneAsync("popUpInWPlace", LoadSceneMode.Additive);
+            }
         }
     }
 
-    public void popUpMenu(string sceneName,GameObject obj){
+    private void popUpMenu(string sceneName,GameObject obj){
         StartCoroutine(_popUpMenu(sceneName,()=>{
             var menu = FindObjectOfType<PopupToMenu>() as PopupToMenu;
             menu.player= obj;
