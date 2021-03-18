@@ -26,7 +26,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster() {
         Debug.Log("connected");
         // "room"という名前のルームに参加する（ルームが無ければ作成してから参加する）
-        PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("hoge", new RoomOptions(), TypedLobby.Default);
     }
 
     
