@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 0
-  fontScaler: 1000
+  fontScaler: 3
 --- !u!1 &1257808148
 GameObject:
   m_ObjectHideFlags: 0
