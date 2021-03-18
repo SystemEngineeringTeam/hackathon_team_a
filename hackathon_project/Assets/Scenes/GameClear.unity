@@ -315,10 +315,10 @@ RectTransform:
   m_Father: {fileID: 1211795331}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -50, y: 100}
-  m_SizeDelta: {x: 80, y: 30}
+  m_AnchorMin: {x: 0.1, y: 0.15200001}
+  m_AnchorMax: {x: 0.4495612, y: 0.2732518}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.0000076293945, y: -0.0000038146973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637462203
 MonoBehaviour:
@@ -395,7 +395,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: f2a22913d47794813bc234b5c11f530d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -522,10 +522,10 @@ RectTransform:
   m_Father: {fileID: 1211795331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -140}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.1457806, y: 0.5178741}
+  m_AnchorMax: {x: 0.85843885, y: 0.70075065}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.00006866455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &929330760
 MonoBehaviour:
@@ -550,8 +550,8 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8630533049cd24623878550f9ade1214, type: 3}
     m_FontSize: 29
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
+    m_BestFit: 1
+    m_MinSize: 29
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -887,10 +887,10 @@ RectTransform:
   m_Father: {fileID: 1211795331}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 50, y: 100}
-  m_SizeDelta: {x: 80, y: 30}
+  m_AnchorMin: {x: 0.5504389, y: 0.15200001}
+  m_AnchorMax: {x: 0.89900005, y: 0.2732518}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.0000038146973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566292314
 MonoBehaviour:
@@ -967,7 +967,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: b1c9811f3c6264d7c9a1cc88f48fb55e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
