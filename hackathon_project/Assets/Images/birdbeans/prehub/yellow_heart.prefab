@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3925576547150039978}
   m_Layer: 0
   m_Name: yellow_heart
-  m_TagString: Untagged
+  m_TagString: heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,3 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6246cedda588104a9e7f7e3a2617570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hearttmp: 0

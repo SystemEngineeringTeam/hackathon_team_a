@@ -15,11 +15,15 @@ public class Player_man : MonoBehaviour
     public float speed;
     public GameObject l_knife;
     public GameObject r_knife;
+    public GameObject Sound;
+    SoundMng soundscript;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        soundscript = Sound.GetComponent<SoundMng>();
+        var renderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -74,16 +78,14 @@ public class Player_man : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         // ハートがプレイヤーに当たると消滅
         if(collision.tag == "heart"){
-            SceneManager.LoadScene("BirdBeanEnd");
+            soundscript.pityun();
             Destroy(gameObject);
         }
     }
 
     void OnBecameInvisible()// 画面外にいくと消滅
     {
-        SceneManager.LoadScene("BirdBeanEnd");
+        soundscript.pityun();
         Destroy(gameObject);
     }
-
-
 }
