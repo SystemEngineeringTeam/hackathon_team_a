@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 using Photon.Pun;
 using Photon.Chat;
-using Photon.Realtime;
+// using Photon.Realtime;
 public class chat : MonoBehaviour, IChatClientListener
 {
 	public ChatClient chatClient;
@@ -33,6 +33,11 @@ public class chat : MonoBehaviour, IChatClientListener
     {
         chatClient = new ChatClient( this );
         this.chatClient.ConnectUsingSettings(PhotonNetwork.PhotonServerSettings.AppSettings.GetChatSettings());
+        user = PhotonNetwork.NickName;
+        if( user.CompareTo("")==0){
+            user="noName"+System.Environment.TickCount%1000;
+        }
+        this.chatClient.AuthValues = new AuthenticationValues(this.user);
 
     }
 
