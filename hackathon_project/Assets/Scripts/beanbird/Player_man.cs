@@ -24,6 +24,7 @@ public class Player_man : MonoBehaviour
 
     void Start()
     {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         soundscript = Sound.GetComponent<SoundMng>();
@@ -35,7 +36,7 @@ public class Player_man : MonoBehaviour
     {   
         duration += Time.deltaTime; 
         pcmove();
-        //phonemove();
+        phonemove();
     }
 
     public void pcmove(){
