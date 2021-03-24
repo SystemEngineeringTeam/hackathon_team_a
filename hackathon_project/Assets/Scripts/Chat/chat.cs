@@ -58,18 +58,18 @@ public class chat : MonoBehaviour, IChatClientListener
 
     public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message)
 	{
-		if (level == ExitGames.Client.Photon.DebugLevel.ERROR)
-		{
-			Debug.LogError(message);
-		}
-		else if (level == ExitGames.Client.Photon.DebugLevel.WARNING)
-		{
-			Debug.LogWarning(message);
-		}
-		else
-		{
-			Debug.Log(message);
-		}
+		// if (level == ExitGames.Client.Photon.DebugLevel.ERROR)
+		// {
+		// 	Debug.LogError(message);
+		// }
+		// else if (level == ExitGames.Client.Photon.DebugLevel.WARNING)
+		// {
+		// 	Debug.LogWarning(message);
+		// }
+		// else
+		// {
+		// 	Debug.Log(message);
+		// }
 	}
     
     // メッセージを送信する
