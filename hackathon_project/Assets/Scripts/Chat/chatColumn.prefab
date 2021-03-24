@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 3926775603526752951}
   - component: {fileID: 3926775603526752945}
   - component: {fileID: 3926775603526752950}
+  - component: {fileID: 2401948728801083961}
   m_Layer: 5
   m_Name: chatColumn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &3926775603526752951
 RectTransform:
@@ -78,3 +79,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &2401948728801083961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3926775603526752948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a942747ac62cd7f4789d62f19b5d02eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: 
+  sender: 
