@@ -28,6 +28,7 @@ public class chat : MonoBehaviour, IChatClientListener
     public FontSizer fontSizer;
 
     public Dropdown ChannelSelector;
+    public Transform ChannelForm;
     
 
     // Start is called before the first frame update
@@ -179,13 +180,33 @@ public class chat : MonoBehaviour, IChatClientListener
     // チャンネル切り替え
     public void ChangeChannel(){
         // Debug.Log(ChannelSelector.captionText.text);
-        activeChannel=ChannelSelector.captionText.text;
-        chatClient.Subscribe(ChannelSelector.captionText.text);
-        foreach (Message item in Content.GetComponentsInChildren<Message>())
-        {
-            // item.gameObject.SetActive(true);
-            // Debug.Log(item.channel.Equals(activeChannel));
-            item.GetComponent<Text>().enabled=item.channel.Equals(activeChannel);
+        if(ChannelSelector.value==0){
+            ChannelSelector.value=1;
+            ChannelForm.gameObject.SetActive(true);
+        }else{
+            activeChannel=ChannelSelector.captionText.text;
+            // chatClient.Subscribe(ChannelSelector.captionText.text);
+            foreach (Message item in Content.GetComponentsInChildren<Message>())
+            {
+                // item.gameObject.SetActive(true);
+                // Debug.Log(item.channel.Equals(activeChannel));
+                item.GetComponent<Text>().enabled=item.channel.Equals(activeChannel);
+            }
+        }
+        
+    }
+    public void addChannel(){
+        string channel = ChannelForm.GetComponentInChildren<InputField>().text;
+        ChannelForm.GetComponentInChildren<InputField>().text="";
+        chatClient.Subscribe(channel);
+        Dropdown.OptionData option=new Dropdown.OptionData();
+        option.text=channel;
+        ChannelSelector.options.Add(option);
+        ChannelForm.gameObject.SetActive(false);
+    }
+    public void addChannelInReturn(){
+        if(Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)){
+            addChannel();
         }
     }
 }
