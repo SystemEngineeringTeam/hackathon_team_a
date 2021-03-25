@@ -14,7 +14,10 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     void Start()
     {
         if(!PhotonNetwork.IsConnected){
+            PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("UserNickName");
             PhotonNetwork.ConnectUsingSettings();
+        }else{
+            setupPlayer();
         }
     }
     void OnGUI()
@@ -32,6 +35,11 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
+        setupPlayer();
+
+        
+    }
+    void setupPlayer(){
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrehub.name, new Vector3(0f,0f,0f), Quaternion.identity, 0);
         Player.GetComponent<Player>().enabled=true;
         Player.GetComponent<Player>().isMine=true;
@@ -41,7 +49,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
             Player.transform.GetChild(0).GetComponent<TextMesh>().text = PhotonNetwork.LocalPlayer.NickName;
         }
         MainCam.GetComponent<FollowCamera>().playerObj =Player;
-
+        
         SceneManager.LoadScene("SettingName",LoadSceneMode.Additive);
         SceneManager.LoadScene("Chat",LoadSceneMode.Additive);
     }
