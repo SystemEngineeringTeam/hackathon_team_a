@@ -15,6 +15,7 @@ public class Punicon : MonoBehaviour
 
     ScreenInclination curScreenInc, preScreenInc;
     Vector3 tapPos, drugPos;
+    Vector2 drugVec;
     [SerializeField]
     GameObject root, arrow, unmask, triangle, circle;
     [SerializeField]
@@ -35,6 +36,8 @@ public class Punicon : MonoBehaviour
     void Update()
     {
         CheckScreen();
+        drugVec = Vector2.zero;
+
 
         //押された瞬間の挙動
         if (Input.GetMouseButtonDown(0))
@@ -48,7 +51,7 @@ public class Punicon : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             drugPos = Input.mousePosition;
-            Vector2 drugVec = drugPos - tapPos;
+            drugVec = drugPos - tapPos;
             float dis;
 
             //矢印の大きさ
@@ -130,5 +133,10 @@ public class Punicon : MonoBehaviour
     {
         circle.GetComponent<Image>().enabled = false;
         triangle.GetComponent<Image>().enabled = false;
+    }
+
+    public Vector2 GetMoveVector()
+    {
+        return this.drugVec;
     }
 }
