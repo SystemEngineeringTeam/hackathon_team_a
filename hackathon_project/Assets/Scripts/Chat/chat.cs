@@ -26,6 +26,9 @@ public class chat : MonoBehaviour, IChatClientListener
     private Scrollbar Scrollbar;
     public GameObject hideShowButton;
     public FontSizer fontSizer;
+
+    public Dropdown ChannelSelector;
+    public Transform ChannelForm;
     
 
     // Start is called before the first frame update
@@ -58,18 +61,18 @@ public class chat : MonoBehaviour, IChatClientListener
 
     public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message)
 	{
-		if (level == ExitGames.Client.Photon.DebugLevel.ERROR)
-		{
-			Debug.LogError(message);
-		}
-		else if (level == ExitGames.Client.Photon.DebugLevel.WARNING)
-		{
-			Debug.LogWarning(message);
-		}
-		else
-		{
-			Debug.Log(message);
-		}
+		// if (level == ExitGames.Client.Photon.DebugLevel.ERROR)
+		// {
+		// 	Debug.LogError(message);
+		// }
+		// else if (level == ExitGames.Client.Photon.DebugLevel.WARNING)
+		// {
+		// 	Debug.LogWarning(message);
+		// }
+		// else
+		// {
+		// 	Debug.Log(message);
+		// }
 	}
     
     // メッセージを送信する
@@ -104,7 +107,8 @@ public class chat : MonoBehaviour, IChatClientListener
     public void OnConnected()
 	{
         // Debug.Log("connected");
-        chatClient.Subscribe( new string[] { "hoge", "channelB" } );
+        // chatClient.Subscribe( new string[] { "メイン", "channelB" } );
+        chatClient.Subscribe("メイン");
         user=PhotonNetwork.NickName;
     }
 
@@ -114,11 +118,15 @@ public class chat : MonoBehaviour, IChatClientListener
     //メッセージ受信時の処理
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
 	{
+        bool isActive=channelName.Equals(activeChannel);
         for(int i=0;i<messages.Length;i++)
         {
             GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<Text>().text=senders[i]+": "+messages[i];
             obj.GetComponent<Text>().fontSize=(int)fontSizer.fontSize;
+            obj.GetComponent<Message>().channel=channelName;
+            obj.GetComponent<Message>().sender=senders[i];
+            obj.SetActive(isActive);
             obj.transform.SetParent(Content);
             Scrollbar.value=0;
         }
@@ -163,9 +171,42 @@ public class chat : MonoBehaviour, IChatClientListener
         Debug.LogFormat("OnUserUnsubscribed: channel=\"{0}\" userId=\"{1}\"", channel, user);
     }
 
+
     // チャットの表示
     public void HideShowChat(){
         chatObject.SetActive(chatObject.activeSelf^true);
         hideShowButton.SetActive(chatObject.activeSelf^true);
+    }
+    // チャンネル切り替え
+    public void ChangeChannel(){
+        // Debug.Log(ChannelSelector.captionText.text);
+        if(ChannelSelector.value==0){
+            ChannelSelector.value=1;
+            ChannelForm.gameObject.SetActive(true);
+        }else{
+            activeChannel=ChannelSelector.captionText.text;
+            // chatClient.Subscribe(ChannelSelector.captionText.text);
+            foreach (Message item in Content.GetComponentsInChildren<Message>())
+            {
+                // item.gameObject.SetActive(true);
+                // Debug.Log(item.channel.Equals(activeChannel));
+                item.GetComponent<Text>().enabled=item.channel.Equals(activeChannel);
+            }
+        }
+        
+    }
+    public void addChannel(){
+        string channel = ChannelForm.GetComponentInChildren<InputField>().text;
+        ChannelForm.GetComponentInChildren<InputField>().text="";
+        chatClient.Subscribe(channel);
+        Dropdown.OptionData option=new Dropdown.OptionData();
+        option.text=channel;
+        ChannelSelector.options.Add(option);
+        ChannelForm.gameObject.SetActive(false);
+    }
+    public void addChannelInReturn(){
+        if(Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)){
+            addChannel();
+        }
     }
 }

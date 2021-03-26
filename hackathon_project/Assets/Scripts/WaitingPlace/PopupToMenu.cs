@@ -20,7 +20,7 @@ public class PopupToMenu : MonoBehaviour
 
     public void Change2Menu(){
         PhotonNetwork.Destroy(player);
-        PhotonNetwork.Disconnect();
+        // PhotonNetwork.Disconnect();
         SceneManager.LoadScene("Menu");
     }
 }
