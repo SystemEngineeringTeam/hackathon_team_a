@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Punicon : MonoBehaviour
 {
@@ -15,13 +16,19 @@ public class Punicon : MonoBehaviour
     ScreenInclination curScreenInc, preScreenInc;
     Vector3 tapPos, drugPos;
     [SerializeField]
-    GameObject root, arrow, unmask;
+    GameObject root, arrow, unmask, triangle, circle;
     [SerializeField]
-    float stretchSpeed, baseSize;
+    float stretchSpeed, baseSize, maxSize, minSize;
+
+    [SerializeField]
+    float timeOut;
+    float timeElapsed;
+
     // Start is called before the first frame update
     void Start()
     {
         CheckScreen();
+        VisualOff();
     }
 
     // Update is called once per frame
@@ -34,6 +41,8 @@ public class Punicon : MonoBehaviour
         {
             tapPos = Input.mousePosition;
             root.GetComponent<RectTransform>().position = tapPos;
+            timeElapsed = 0;
+            VisualOn();
         }
         //押されてる間の矢印の動き
         if (Input.GetMouseButton(0))
@@ -41,8 +50,9 @@ public class Punicon : MonoBehaviour
             drugPos = Input.mousePosition;
             Vector2 drugVec = drugPos - tapPos;
             float dis;
+
             //矢印の大きさ
-            if (curScreenInc == ScreenInclination.holizontal) 
+            if (curScreenInc == ScreenInclination.vertical) 
             { 
                 dis = drugVec.magnitude * BASE_SHOTTER / Screen.width;
             }
@@ -53,14 +63,19 @@ public class Punicon : MonoBehaviour
            
             float sizeRate = dis / stretchSpeed;
             Vector3 temp = arrow.GetComponent<RectTransform>().localScale;
-            if (sizeRate >= 0.8f && sizeRate < 2f)
+            if (sizeRate >= minSize && sizeRate <= maxSize)
             {
-                arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * dis / stretchSpeed, temp.z);
+                arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * sizeRate, temp.z);
                 unmask.GetComponent<RectTransform>().localScale = new Vector3(unmask.GetComponent<RectTransform>().localScale.x, stretchSpeed / (baseSize * dis), unmask.GetComponent<RectTransform>().localScale.z);
             }
-            else if(sizeRate < 1)
+            else if(sizeRate < minSize)
             {
                 arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, 0, temp.z);
+            }
+            else if (sizeRate > maxSize)
+            {
+                arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * maxSize, temp.z);
+                unmask.GetComponent<RectTransform>().localScale = new Vector3(unmask.GetComponent<RectTransform>().localScale.x, baseSize / maxSize, unmask.GetComponent<RectTransform>().localScale.z);
             }
 
             //矢印の向き
@@ -70,6 +85,16 @@ public class Punicon : MonoBehaviour
             arrow.GetComponent<RectTransform>().RotateAround(root.GetComponent<RectTransform>().position, arrow.GetComponent<RectTransform>().forward, degree - 90);
 
             preScreenInc = curScreenInc;
+        }
+        else
+        {
+            timeElapsed += Time.deltaTime;
+        }
+
+        //一定時間で消す
+        if (timeElapsed >= timeOut)
+        {
+            VisualOff();
         }
     }
 
@@ -93,5 +118,17 @@ public class Punicon : MonoBehaviour
         {
             root.GetComponent<RectTransform>().localScale = new Vector3(Screen.width / BASE_LONGER, Screen.width / BASE_LONGER, 1);
         }
+    }
+
+    void VisualOn()
+    {
+        circle.GetComponent<Image>().enabled = true;
+        triangle.GetComponent<Image>().enabled = true;
+    }
+
+    void VisualOff()
+    {
+        circle.GetComponent<Image>().enabled = false;
+        triangle.GetComponent<Image>().enabled = false;
     }
 }

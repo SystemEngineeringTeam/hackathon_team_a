@@ -1806,8 +1806,13 @@ MonoBehaviour:
   root: {fileID: 1481125691}
   arrow: {fileID: 1943882014}
   unmask: {fileID: 421008339}
+  triangle: {fileID: 1755119894}
+  circle: {fileID: 1906454707}
   stretchSpeed: 90
   baseSize: 1
+  maxSize: 2
+  minSize: 1
+  timeOut: 0.5
 --- !u!1 &1616732211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3529412}
+  m_Color: {r: 0.5801887, g: 0.71637446, b: 1, a: 0.3529412}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
