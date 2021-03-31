@@ -23,10 +23,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Move();
+        //キーボード優先
+        MoveWithPunicon();
+        MoveWithKey();
     }
 
-    void Move() 
+    void MoveWithPunicon() 
     {
         if (Input.GetMouseButton(0))
         {
@@ -39,6 +41,32 @@ public class Player : MonoBehaviour
             {
                 this.GetComponent<Rigidbody2D>().velocity = moveVec.normalized * maxSpeed;
             }
+        }
+    }
+
+    void MoveWithKey()
+    {
+        Vector2 moveVec = Vector2.zero;
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveVec += new Vector2(-1, 0);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            moveVec += new Vector2(0, -1);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveVec += new Vector2(1, 0);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveVec += new Vector2(0, 1);
+        }
+
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))
+        {
+            this.GetComponent<Rigidbody2D>().velocity = moveVec.normalized * maxSpeed;
         }
     }
 
