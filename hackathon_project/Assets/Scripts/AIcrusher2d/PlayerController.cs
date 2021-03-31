@@ -12,33 +12,47 @@ namespace AICrusher
 
         private bool inverseX;
         private bool rotateToggle=false;
+
+        private bool onFloor=false;
         private Rigidbody2D rb;
-        private SpriteRenderer sprite;
+        public SpriteRenderer sprite;
 
         // Start is called before the first frame update
         void Start()
         {
             rb=GetComponent<Rigidbody2D>();
-            sprite=GetComponent<SpriteRenderer>();
         }
 
         // Update is called once per frame
         void Update()
         {
             int horizontalkey=0;
+            int verticalkey=0;
+            
             if(Input.GetKey(KeyCode.A)){
                 horizontalkey--;
             }
             if(Input.GetKey(KeyCode.D)){
                 horizontalkey++;
             }
+            if(Input.GetKey(KeyCode.W)){
+                verticalkey++;
+            }
+            if(Input.GetKey(KeyCode.S)){
+                verticalkey--;
+            }
             if(horizontalkey<0){
                 inverseX=true;
             }else if(horizontalkey>0){
                 inverseX=false;
             }
-            sprite.flipX=inverseX;
+            // sprite.flipX=inverseX;
+            // transform.rotation
             rb.velocity=new Vector2(horizontalkey*speed,rb.velocity.y);
+
+            if(rb.velocity.y<4&&verticalkey>0){
+                rb.velocity+=new Vector2(0,0.1f);
+            }
             rb.freezeRotation=!rotateToggle;
         }
     }
