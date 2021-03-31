@@ -1325,10 +1325,10 @@ RectTransform:
   m_Father: {fileID: 1871157221}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.019000001, y: 0.08665808}
-  m_AnchorMax: {x: 0.84083337, y: 0.316}
-  m_AnchoredPosition: {x: 0.012451172, y: 0}
-  m_SizeDelta: {x: -0.024902344, y: 0.000015258789}
+  m_AnchorMin: {x: 0.019000001, y: 0.08400001}
+  m_AnchorMax: {x: 0.84083337, y: 0.31339586}
+  m_AnchoredPosition: {x: 0.012512207, y: 2.5}
+  m_SizeDelta: {x: -0.024841309, y: -4.999939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831297349
 MonoBehaviour:
@@ -1701,10 +1701,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 22
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 22
+    m_MinSize: 8
     m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2455,10 +2455,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 25
+    m_MinSize: 0
     m_MaxSize: 200
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2779,11 +2779,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 60
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 60
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3246,11 +3246,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8630533049cd24623878550f9ade1214, type: 3}
-    m_FontSize: 23
+    m_FontSize: 60
     m_FontStyle: 2
     m_BestFit: 1
-    m_MinSize: 23
-    m_MaxSize: 50
+    m_MinSize: 0
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3454,10 +3454,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8630533049cd24623878550f9ade1214, type: 3}
-    m_FontSize: 25
+    m_FontSize: 60
     m_FontStyle: 2
     m_BestFit: 1
-    m_MinSize: 0
+    m_MinSize: 6
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3465,7 +3465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u7537\u3068\u30CA\u30A4\u30D5"
+  m_Text: KnifeHero
 --- !u!222 &2068951317
 CanvasRenderer:
   m_ObjectHideFlags: 0

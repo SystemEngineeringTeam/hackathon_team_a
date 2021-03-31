@@ -566,11 +566,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8630533049cd24623878550f9ade1214, type: 3}
-    m_FontSize: 28
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 28
-    m_MaxSize: 50
+    m_MinSize: 100
+    m_MaxSize: 100
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
