@@ -119,13 +119,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1291596559380414333
 MonoBehaviour:
@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e570ab88ed67a4e569184f39ba0d8587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   sound1: {fileID: 8300000, guid: e1dc4c445c144064f865a8c1711e5b0f, type: 3}
   isMine: 0
 --- !u!82 &1291596559380414332
