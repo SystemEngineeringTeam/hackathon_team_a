@@ -36,8 +36,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
         setupPlayer();
-
-        
+        GameObject.Find("Loading_BackGround_Image").GetComponent<LoadingMark>().RemoveLoadingUI();
     }
     void setupPlayer(){
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrehub.name, new Vector3(0f,0f,0f), Quaternion.identity, 0);

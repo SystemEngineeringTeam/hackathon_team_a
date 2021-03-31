@@ -26,6 +26,7 @@ public class Punicon : MonoBehaviour
     float timeOut;
     float timeElapsed;
 
+    bool loading = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,64 +41,74 @@ public class Punicon : MonoBehaviour
         drugVec = Vector2.zero;
         dis = 0f;
 
-        //押された瞬間の挙動
-        if (Input.GetMouseButtonDown(0))
+        if (loading == true)
         {
-            tapPos = Input.mousePosition;
-            root.GetComponent<RectTransform>().position = tapPos;
-            timeElapsed = 0;
-            VisualOn();
+            if(GameObject.Find("Player(Clone)") != null)
+            {
+                loading = false;
+            }
         }
-        //押されてる間の矢印の動き
-        if (Input.GetMouseButton(0))
-        {
-            drugPos = Input.mousePosition;
-            drugVec = drugPos - tapPos;
 
-            //矢印の大きさ
-            if (curScreenInc == ScreenInclination.vertical) 
-            { 
-                dis = drugVec.magnitude * BASE_SHOTTER / Screen.width;
+        if (loading == false) {
+            //押された瞬間の挙動
+            if (Input.GetMouseButtonDown(0))
+            {
+                tapPos = Input.mousePosition;
+                root.GetComponent<RectTransform>().position = tapPos;
+                timeElapsed = 0;
+                VisualOn();
+            }
+            //押されてる間の矢印の動き
+            if (Input.GetMouseButton(0))
+            {
+                drugPos = Input.mousePosition;
+                drugVec = drugPos - tapPos;
+
+                //矢印の大きさ
+                if (curScreenInc == ScreenInclination.vertical)
+                {
+                    dis = drugVec.magnitude * BASE_SHOTTER / Screen.width;
+                }
+                else
+                {
+                    dis = drugVec.magnitude * BASE_LONGER / Screen.width;
+                }
+
+                float sizeRate = dis / stretchSpeed;
+                Vector3 temp = arrow.GetComponent<RectTransform>().localScale;
+                if (sizeRate >= minSize && sizeRate <= maxSize)
+                {
+                    arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * sizeRate, temp.z);
+                    unmask.GetComponent<RectTransform>().localScale = new Vector3(unmask.GetComponent<RectTransform>().localScale.x, stretchSpeed / (baseSize * dis), unmask.GetComponent<RectTransform>().localScale.z);
+                }
+                else if (sizeRate < minSize)
+                {
+                    arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, 0, temp.z);
+                }
+                else if (sizeRate > maxSize)
+                {
+                    arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * maxSize, temp.z);
+                    unmask.GetComponent<RectTransform>().localScale = new Vector3(unmask.GetComponent<RectTransform>().localScale.x, baseSize / maxSize, unmask.GetComponent<RectTransform>().localScale.z);
+                }
+
+                //矢印の向き
+                float rad = Mathf.Atan2(drugVec.y, drugVec.x);
+                float degree = rad * Mathf.Rad2Deg;
+                arrow.GetComponent<RectTransform>().rotation = new Quaternion(0, 0, 0, 0);
+                arrow.GetComponent<RectTransform>().RotateAround(root.GetComponent<RectTransform>().position, arrow.GetComponent<RectTransform>().forward, degree - 90);
+
+                preScreenInc = curScreenInc;
             }
             else
             {
-                dis = drugVec.magnitude * BASE_LONGER / Screen.width;
-            }
-           
-            float sizeRate = dis / stretchSpeed;
-            Vector3 temp = arrow.GetComponent<RectTransform>().localScale;
-            if (sizeRate >= minSize && sizeRate <= maxSize)
-            {
-                arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * sizeRate, temp.z);
-                unmask.GetComponent<RectTransform>().localScale = new Vector3(unmask.GetComponent<RectTransform>().localScale.x, stretchSpeed / (baseSize * dis), unmask.GetComponent<RectTransform>().localScale.z);
-            }
-            else if(sizeRate < minSize)
-            {
-                arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, 0, temp.z);
-            }
-            else if (sizeRate > maxSize)
-            {
-                arrow.GetComponent<RectTransform>().localScale = new Vector3(temp.x, baseSize * maxSize, temp.z);
-                unmask.GetComponent<RectTransform>().localScale = new Vector3(unmask.GetComponent<RectTransform>().localScale.x, baseSize / maxSize, unmask.GetComponent<RectTransform>().localScale.z);
+                timeElapsed += Time.deltaTime;
             }
 
-            //矢印の向き
-            float rad = Mathf.Atan2(drugVec.y, drugVec.x);
-            float degree = rad * Mathf.Rad2Deg;
-            arrow.GetComponent<RectTransform>().rotation = new Quaternion(0,0,0,0);
-            arrow.GetComponent<RectTransform>().RotateAround(root.GetComponent<RectTransform>().position, arrow.GetComponent<RectTransform>().forward, degree - 90);
-
-            preScreenInc = curScreenInc;
-        }
-        else
-        {
-            timeElapsed += Time.deltaTime;
-        }
-
-        //一定時間で消す
-        if (timeElapsed >= timeOut)
-        {
-            VisualOff();
+            //一定時間で消す
+            if (timeElapsed >= timeOut)
+            {
+                VisualOff();
+            }
         }
     }
 
