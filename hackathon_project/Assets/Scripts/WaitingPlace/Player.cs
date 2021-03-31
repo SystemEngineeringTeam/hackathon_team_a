@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     AudioSource audioSource;
 
     public bool isMine=false;
-
+    public bool activeMoving = true;
     void Start()
     {
         puniconSys = GameObject.Find("Punicon").GetComponent<Punicon>();
@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         //キーボード優先
+        if (activeMoving) { 
         MoveWithPunicon();
         MoveWithKey();
+        }
     }
 
     void MoveWithPunicon() 
