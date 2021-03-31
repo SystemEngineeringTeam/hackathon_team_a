@@ -13,9 +13,9 @@ namespace AICrusher
         private bool inverseX;
         private bool rotateToggle=false;
 
-        private bool onFloor=false;
+        // private bool onFloor=false;
         private Rigidbody2D rb;
-        public SpriteRenderer sprite;
+        // public SpriteRenderer sprite;
 
         // Start is called before the first frame update
         void Start()
@@ -50,8 +50,8 @@ namespace AICrusher
             // transform.rotation
             rb.velocity=new Vector2(horizontalkey*speed,rb.velocity.y);
 
-            if(rb.velocity.y<4&&verticalkey>0){
-                rb.velocity+=new Vector2(0,0.1f);
+            if(rb.velocity.y<speed&&verticalkey>0){
+                rb.velocity+=new Vector2(0,Time.deltaTime*30*speed);
             }
             rb.freezeRotation=!rotateToggle;
         }
