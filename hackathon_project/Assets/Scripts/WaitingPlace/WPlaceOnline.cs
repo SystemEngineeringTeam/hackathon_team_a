@@ -13,6 +13,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     public GameObject MainCam;
     void Start()
     {
+        Screen.orientation = ScreenOrientation.AutoRotation;
         if(!PhotonNetwork.IsConnected){
             PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("UserNickName");
             PhotonNetwork.ConnectUsingSettings();
