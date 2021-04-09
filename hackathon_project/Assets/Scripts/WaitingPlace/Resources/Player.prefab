@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound1: {fileID: 8300000, guid: e1dc4c445c144064f865a8c1711e5b0f, type: 3}
   isMine: 0
+  activeMoving: 1
 --- !u!82 &1291596559380414332
 AudioSource:
   m_ObjectHideFlags: 0

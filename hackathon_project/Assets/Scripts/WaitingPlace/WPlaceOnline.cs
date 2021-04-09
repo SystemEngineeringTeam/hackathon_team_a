@@ -11,6 +11,9 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     public GameObject PlayerPrehub;
     public GameObject MainCam;
+
+    public LoadingMark loadingUI;
+
     void Start()
     {
         if(!PhotonNetwork.IsConnected){
@@ -28,6 +31,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
      //ルームに入室前に呼び出される
     public override void OnConnectedToMaster() {
         Debug.Log("connected");
+        loadingUI.GetComponent<LoadingMark>().SetLoadingUI();
         // "room"という名前のルームに参加する（ルームが無ければ作成してから参加する）
         PhotonNetwork.JoinOrCreateRoom("hoge", new RoomOptions(), TypedLobby.Default);
     }
@@ -36,7 +40,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
         setupPlayer();
-        GameObject.Find("Loading_BackGround_Image").GetComponent<LoadingMark>().RemoveLoadingUI();
+        loadingUI.GetComponent<LoadingMark>().RemoveLoadingUI();
     }
     void setupPlayer(){
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrehub.name, new Vector3(0f,0f,0f), Quaternion.identity, 0);

@@ -57162,6 +57162,7 @@ MonoBehaviour:
   PlayerPrehub: {fileID: 1291596559380414330, guid: c08c288585e412743ad0568245adedd5,
     type: 3}
   MainCam: {fileID: 1375040971}
+  loadingUI: {fileID: 1582830114}
 --- !u!4 &745525733
 Transform:
   m_ObjectHideFlags: 0
@@ -62424,7 +62425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1582830113
 RectTransform:
   m_ObjectHideFlags: 0

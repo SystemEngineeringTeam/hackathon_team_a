@@ -37,4 +37,9 @@ public class LoadingMark : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
+    public void SetLoadingUI()
+    {
+        this.gameObject.SetActive(true);
+    }
 }
