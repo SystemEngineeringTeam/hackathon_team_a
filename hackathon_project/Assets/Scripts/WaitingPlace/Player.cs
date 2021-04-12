@@ -4,21 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-    // 移動スピード
-    public float speed = 10;
-    float x_speed = 0;
-    float y_speed = 0;
-    Vector2 startPos;
-    Vector2 startPoint;
+    Punicon puniconSys;
+    float sensitivity = 0.05f;
+    float maxSpeed = 10;
 
     public AudioClip sound1;
     AudioSource audioSource;
 
     public bool isMine=false;
-
+    public bool activeMoving = true;
     void Start()
     {
-        // audioSource = GetComponent<AudioSource>();
+        puniconSys = GameObject.Find("Punicon").GetComponent<Punicon>();
     }
     void Awake(){
         audioSource = GetComponent<AudioSource>();
@@ -26,66 +23,53 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //　メソッドの呼び出し
-        //Move();// スマホ用
-        MoveSwipe();// PC用
+        //キーボード優先
+        if (activeMoving) { 
+        MoveWithPunicon();
+        MoveWithKey();
+        }
     }
 
-    void Move() //スワイプで移動
-    {   
-        
-        Vector2 direction = new Vector2(0, 0);
- 
-        if (Input.touchCount > 0)// タッチ数
+    void MoveWithPunicon() 
+    {
+        if (Input.GetMouseButton(0))
         {
-            Touch touch = Input.GetTouch(0);// touch構造体の取得
-            // スワイプの移動距離
- 
-            switch (touch.phase)
+            Vector2 moveVec = puniconSys.GetMoveVector() * sensitivity;
+            if (moveVec.magnitude < maxSpeed)
             {
-                
-                case TouchPhase.Began:
-                    startPoint = touch.position;
-                    break;
-
-                case TouchPhase.Moved:
-                    direction = touch.position - startPoint;
-                    break;
+                this.GetComponent<Rigidbody2D>().velocity = moveVec;
             }
-            GetComponent<Rigidbody2D>().velocity = (direction/100) * speed;
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = moveVec.normalized * maxSpeed;
+            }
         }
- 
-        // 移動する向きとスピード
-        
     }
 
-    void MoveSwipe()
-    {   
-        Vector2 dire = new Vector2(0, 0);
-        // マウスが左クリックされたとき
-        if (Input.GetMouseButtonDown(0))
+    void MoveWithKey()
+    {
+        Vector2 moveVec = Vector2.zero;
+        if (Input.GetKey(KeyCode.A))
         {
-            // マウスをクリックした座標
-            this.startPos = Input.mousePosition;
+            moveVec += new Vector2(-1, 0);
         }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetKey(KeyCode.S))
         {
-            // マウスを離した座標
-            Vector2 endPos = Input.mousePosition;
-
-            float x_swipeLength = endPos.x - this.startPos.x;
-            float y_swipeLength = endPos.y - this.startPos.y;
-
-            // スワイプの長さを速度に変換する
-            this.x_speed = x_swipeLength / 10.0f;
-            this.y_speed = y_swipeLength / 10.0f;
+            moveVec += new Vector2(0, -1);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveVec += new Vector2(1, 0);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveVec += new Vector2(0, 1);
         }
 
-        dire = new Vector2(this.x_speed, this.y_speed);
-        GetComponent<Rigidbody2D>().velocity = dire;
-
-        this.x_speed *= 0.99f;
-        this.y_speed *= 0.99f;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))
+        {
+            this.GetComponent<Rigidbody2D>().velocity = moveVec.normalized * maxSpeed;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {

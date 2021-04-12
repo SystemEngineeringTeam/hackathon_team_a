@@ -28,6 +28,7 @@ public class SettingName : MonoBehaviour
         string nickName = input.text;
         if (!nickName.Equals("")){
                 PhotonNetwork.LocalPlayer.NickName = nickName;
+                PlayerPrefs.SetString("UserNickName",nickName);
                 PhotonNetwork.Disconnect();
                 PhotonNetwork.ConnectUsingSettings();
                 input.text="";

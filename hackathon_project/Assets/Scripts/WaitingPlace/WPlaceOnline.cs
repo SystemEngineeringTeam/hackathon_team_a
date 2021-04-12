@@ -11,10 +11,16 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     public GameObject PlayerPrehub;
     public GameObject MainCam;
+
+    public LoadingMark loadingUI;
+
     void Start()
     {
         if(!PhotonNetwork.IsConnected){
+            PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("UserNickName");
             PhotonNetwork.ConnectUsingSettings();
+        }else{
+            setupPlayer();
         }
     }
     void OnGUI()
@@ -25,6 +31,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
      //ルームに入室前に呼び出される
     public override void OnConnectedToMaster() {
         Debug.Log("connected");
+        loadingUI.GetComponent<LoadingMark>().SetLoadingUI();
         // "room"という名前のルームに参加する（ルームが無ければ作成してから参加する）
         PhotonNetwork.JoinOrCreateRoom("hoge", new RoomOptions(), TypedLobby.Default);
     }
@@ -32,6 +39,10 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
     
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
+        setupPlayer();
+        loadingUI.GetComponent<LoadingMark>().RemoveLoadingUI();
+    }
+    void setupPlayer(){
         GameObject Player = PhotonNetwork.Instantiate(PlayerPrehub.name, new Vector3(0f,0f,0f), Quaternion.identity, 0);
         Player.GetComponent<Player>().enabled=true;
         Player.GetComponent<Player>().isMine=true;
@@ -41,7 +52,7 @@ public class WPlaceOnline : MonoBehaviourPunCallbacks
             Player.transform.GetChild(0).GetComponent<TextMesh>().text = PhotonNetwork.LocalPlayer.NickName;
         }
         MainCam.GetComponent<FollowCamera>().playerObj =Player;
-
+        
         SceneManager.LoadScene("SettingName",LoadSceneMode.Additive);
         SceneManager.LoadScene("Chat",LoadSceneMode.Additive);
     }
